@@ -8,7 +8,7 @@ IQTREE_PATH=$3 # path to IQ-TREE executable
 ML_TREE_PREFIX=$4 # The prefix of ML trees
 MODEL=$5 # Substitution model
 NUM_THREADS=$6 # the number of threads
-IQTREE_PARAMS="-redo" # IQ-TREE params
+IQTREE_PARAMS="-redo -st DNA" # IQ-TREE params
 
 
 ### pre steps #####

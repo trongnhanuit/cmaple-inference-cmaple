@@ -29,7 +29,7 @@ mkdir -p ${OUTPUT_DIR}
 # remove old results
 rm -f ${OUTPUT_DIR}/*.console.log
 # copy new results
-mv ${ALN_DIR}/*.console.log ${OUTPUT_DIR}
+cp ${ALN_DIR}/*.console.log ${OUTPUT_DIR}
 
 
 
@@ -49,5 +49,5 @@ echo "Moving IQ-TREE files to ${OUTPUT_DIR}"
 # remove old results
 rm -f ${OUTPUT_DIR}/*.iqtree
 # copy new results
-mv ${ALN_DIR}/*.iqtree ${OUTPUT_DIR}
+cp ${ALN_DIR}/*.iqtree ${OUTPUT_DIR}
 
