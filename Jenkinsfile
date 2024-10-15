@@ -25,6 +25,7 @@ properties([
         
         booleanParam(defaultValue: false, description: 'Compute likelihoods of trees inferred by the CMAPLE baseline?', name: 'COMPUTE_LH_CMAPLE_BASELINE'),
         booleanParam(defaultValue: true, description: 'Compute likelihoods of trees inferred by the new CMAPLE?', name: 'COMPUTE_LH_CMAPLE_NEW'),
+        string(name: 'NUM_THREADS', defaultValue: '16', description: 'The number of threads to compute tree likelihoods'),
         
         booleanParam(defaultValue: true, description: 'Remove all exiting output files?', name: 'REMOVE_OUTPUT'),
         booleanParam(defaultValue: true, description: 'Use CIBIV cluster?', name: 'USE_CIBIV'),
@@ -265,7 +266,7 @@ pipeline {
                         sh """
                             ssh -tt ${NCI_ALIAS} ${SSH_COMP_NODE}<< EOF
                     
-                            sh ${SCRIPTS_DIR}/compute_lhs.sh ${ALN_DIR} ${TREE_DIR} ${TOOLS_DIR}/iqtree2 ${CMAPLE_BASELINE_TREE_PREFIX} ${params.MODEL}
+                            sh ${SCRIPTS_DIR}/compute_lhs.sh ${ALN_DIR} ${TREE_DIR} ${TOOLS_DIR}/iqtree2 ${CMAPLE_BASELINE_TREE_PREFIX} ${params.MODEL} ${params.NUM_THREADS}
                         
                             exit
                             EOF
@@ -303,7 +304,7 @@ pipeline {
                         sh """
                             ssh -tt ${NCI_ALIAS} ${SSH_COMP_NODE}<< EOF
                     
-                            sh ${SCRIPTS_DIR}/compute_lhs.sh ${ALN_DIR} ${TREE_DIR} ${TOOLS_DIR}/iqtree2 ${CMAPLE_NEW_TREE_PREFIX} ${params.MODEL}
+                            sh ${SCRIPTS_DIR}/compute_lhs.sh ${ALN_DIR} ${TREE_DIR} ${TOOLS_DIR}/iqtree2 ${CMAPLE_NEW_TREE_PREFIX} ${params.MODEL} ${params.NUM_THREADS}
                         
                             exit
                             EOF
