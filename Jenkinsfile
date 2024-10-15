@@ -66,7 +66,7 @@ pipeline {
                 script {
                     if (params.USE_CIBIV) {
                         NCI_ALIAS = "eingang"
-                        SSH_COMP_NODE = " ssh -tt cox "
+                        SSH_COMP_NODE = " ssh -tt minsky "
                         WORKING_DIR = "/project/AliSim/cmaple"
                         SCRIPTS_DIR = "${WORKING_DIR}/scripts"
                         TOOLS_DIR = "${WORKING_DIR}/tools"
