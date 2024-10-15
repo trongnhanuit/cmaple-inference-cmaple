@@ -38,7 +38,7 @@ pipeline {
         CMAPLE_NEW_NAME = "cmaple_new"
         CMAPLE_BASELINE_TREE_PREFIX = "CMAPLE_BASELINE_tree_"
         CMAPLE_NEW_TREE_PREFIX = "CMAPLE_NEW_tree_"
-        LOCAL_OUT_DIR = "/Users/nhan/DATA/tmp/visualize-sprta-pipeline/output"
+        LOCAL_OUT_DIR = "/Users/nhan/DATA/tmp/cmaple-inference-cmaple/output"
         
         NCI_ALIAS = "gadi"
         SSH_COMP_NODE = " "
