@@ -13,13 +13,6 @@ CMAPLE_NEW_TREE_PREFIX=$4
 
 ############
 
-echo "Moving console logs of CMAPLE to ${OUTPUT_DIR}"
-mkdir -p ${OUTPUT_DIR}
-# remove old results
-rm -f ${OUTPUT_DIR}/*.console.log
-# copy new results
-mv ${ALN_DIR}/*.console.log ${OUTPUT_DIR}
-
 echo "" > ${OUTPUT_DIR}/runtime.log
 for aln_path in "${ALN_DIR}"/*.maple; do
 	aln=$(basename "$aln_path")
@@ -31,14 +24,15 @@ for aln_path in "${ALN_DIR}"/*.maple; do
 	echo "---------------------\n\n" >> ${OUTPUT_DIR}/runtime.log
 done
 
-
-
-
-echo "Moving IQ-TREE files to ${OUTPUT_DIR}"
+echo "Moving console logs of CMAPLE to ${OUTPUT_DIR}"
+mkdir -p ${OUTPUT_DIR}
 # remove old results
-rm -f ${OUTPUT_DIR}/*.iqtree
+rm -f ${OUTPUT_DIR}/*.console.log
 # copy new results
-mv ${ALN_DIR}/*.iqtree ${OUTPUT_DIR}
+mv ${ALN_DIR}/*.console.log ${OUTPUT_DIR}
+
+
+
 
 echo "" > ${OUTPUT_DIR}/tree_lhs.log
 for aln_path in "${ALN_DIR}"/*.maple; do
@@ -50,4 +44,10 @@ for aln_path in "${ALN_DIR}"/*.maple; do
 	grep 'Log-likelihood of the tree:' ${ALN_DIR}/${CMAPLE_NEW_TREE_PREFIX}${aln}_lh.iqtree >> ${OUTPUT_DIR}/tree_lhs.log
 	echo "---------------------\n\n" >> ${OUTPUT_DIR}/tree_lhs.log
 done
+
+echo "Moving IQ-TREE files to ${OUTPUT_DIR}"
+# remove old results
+rm -f ${OUTPUT_DIR}/*.iqtree
+# copy new results
+mv ${ALN_DIR}/*.iqtree ${OUTPUT_DIR}
 
