@@ -43,6 +43,7 @@ pipeline {
         
         NCI_ALIAS = "gadi"
         SSH_COMP_NODE = " "
+        SSH_COMP_NODE_COMPUTE_LH = " "
         WORKING_DIR = "/scratch/dx61/tl8625/cmaple/ci-cd"
         SCRIPTS_DIR = "${WORKING_DIR}/scripts"
         TOOLS_DIR = "${WORKING_DIR}/tools"
@@ -68,6 +69,7 @@ pipeline {
                     if (params.USE_CIBIV) {
                         NCI_ALIAS = "eingang"
                         SSH_COMP_NODE = " ssh -tt minsky "
+                        SSH_COMP_NODE_COMPUTE_LH = " ssh -tt fitch "
                         WORKING_DIR = "/project/AliSim/cmaple"
                         SCRIPTS_DIR = "${WORKING_DIR}/scripts"
                         TOOLS_DIR = "${WORKING_DIR}/tools"
@@ -264,7 +266,7 @@ pipeline {
                 script {
                     if (params.COMPUTE_LH_CMAPLE_BASELINE) {
                         sh """
-                            ssh -tt ${NCI_ALIAS} ${SSH_COMP_NODE}<< EOF
+                            ssh -tt ${NCI_ALIAS} ${SSH_COMP_NODE_COMPUTE_LH}<< EOF
                     
                             sh ${SCRIPTS_DIR}/compute_lhs.sh ${ALN_DIR} ${TREE_DIR} ${TOOLS_DIR}/iqtree2 ${CMAPLE_BASELINE_TREE_PREFIX} ${params.MODEL} ${params.NUM_THREADS}
                         
@@ -302,7 +304,7 @@ pipeline {
                 script {
                     if (params.COMPUTE_LH_CMAPLE_BASELINE) {
                         sh """
-                            ssh -tt ${NCI_ALIAS} ${SSH_COMP_NODE}<< EOF
+                            ssh -tt ${NCI_ALIAS} ${SSH_COMP_NODE_COMPUTE_LH}<< EOF
                     
                             sh ${SCRIPTS_DIR}/compute_lhs.sh ${ALN_DIR} ${TREE_DIR} ${TOOLS_DIR}/iqtree2 ${CMAPLE_NEW_TREE_PREFIX} ${params.MODEL} ${params.NUM_THREADS}
                         
