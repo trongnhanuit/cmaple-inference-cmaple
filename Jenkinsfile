@@ -130,6 +130,7 @@ pipeline {
                             git clone --recursive ${GITHUB_REPO_URL} ${CMAPLE_BASELINE_DIR}
                             cd ${CMAPLE_BASELINE_NAME}
                             git checkout ${params.CMAPLE_BASELINE_BRANCH}
+                            git pull
                             git reset --hard ${params.CMAPLE_BASELINE_COMMIT}
                             
                             mkdir -p ${BUILD_OUTPUT_DIR}
@@ -175,6 +176,7 @@ pipeline {
                             git clone --recursive ${GITHUB_REPO_URL} ${CMAPLE_NEW_DIR}
                             cd ${CMAPLE_NEW_NAME}
                             git checkout ${params.CMAPLE_NEW_BRANCH}
+                            git pull
                             ${git_reset_cmd}
                         
                             mkdir -p ${BUILD_OUTPUT_DIR}
